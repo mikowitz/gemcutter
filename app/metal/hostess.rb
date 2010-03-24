@@ -1,4 +1,4 @@
-class Hostess < Sinatra::Default
+class Hostess < Sinatra::Base
   cattr_writer :local
 
   def self.local
@@ -73,7 +73,7 @@ class Hostess < Sinatra::Default
       serve_via_cf
     else
       if version = Version.find_by_full_name(full_name)
-        Download.create(:version => version)
+        Download.incr(version)
 
         if version.updated_at > 1.day.ago
           serve_via_s3
