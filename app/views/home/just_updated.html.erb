@@ -1,0 +1,20 @@
+<p class="entries">
+  <%= page_entries_info @just_updated, :entry_name => 'version' %>
+</p>
+<div class="gems border">
+  <ol>
+    <% @just_updated.each do |version| %>
+      <li>
+        <div class="downloads">
+          Built on
+          <strong><%= version.built_at.strftime("%a %b %Y, at %H:%M") %></strong>
+        </div>
+        <a href="<%= rubygem_version_path(version.rubygem, version.slug) %>">
+          <strong><%= version.to_title %></strong>
+          <%=h truncate(version.info, :length => 100) %>
+        </a>
+      </li>
+    <% end %>
+  </ol>
+</div>
+<%= will_paginate @just_updated %>

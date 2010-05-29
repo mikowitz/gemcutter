@@ -13,6 +13,12 @@ module NavigationHelpers
       dashboard_path
     when /my profile page/
       profile_path
+    when /the most downloaded list/
+      most_downloaded_path
+    when /the new gems list/
+      new_gems_path
+    when /the just updated list/
+      just_updated_path
     else
       raise "Can't find mapping from \"#{page_name}\" to a path."
     end

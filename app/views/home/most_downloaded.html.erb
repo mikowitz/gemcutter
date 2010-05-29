@@ -1,0 +1,11 @@
+<% @title = "most downloaded" %>
+
+<p class="entries">
+  <%= page_entries_info @most_downloaded, :entry_name => 'gem' %>
+</p>
+<div class="gems border">
+  <ol>
+    <%= render @most_downloaded %>
+  </ol>
+</div>
+<%= will_paginate @most_downloaded %>

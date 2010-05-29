@@ -1,0 +1,22 @@
+<% @title = "new gems" %>
+
+<p class="entries">
+  <%= page_entries_info @new_gems, :entry_name => 'gem' %>
+</p>
+<div class="gems border">
+  <ol>
+    <% @new_gems.each do |rubygem| %>
+      <li>
+        <div class="downloads">
+          Added on
+          <strong><%= rubygem.created_at.strftime("%a %b %Y, at %H:%M") %></strong>
+        </div>
+        <a href="<%= rubygem_path(rubygem) %>">
+          <strong><%= rubygem %></strong>
+          <%=h truncate(rubygem.versions.latest.info, :length => 100) %>
+        </a>
+      </li>
+    <% end %>
+  </ol>
+</div>
+<%= will_paginate @new_gems %>

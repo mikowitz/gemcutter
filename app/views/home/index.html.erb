@@ -44,7 +44,7 @@
 </p>
 <div class="leaderboards">
   <div class="grid_3" id="new_gems">
-    <strong>New Gems</strong>
+    <strong><%= link_to "New Gems", new_gems_path %></strong>
     <ol>
       <% @latest.each do |rubygem| %>
         <li>
@@ -54,7 +54,7 @@
     </ol>
   </div>
   <div class="grid_3" id="most_downloaded">
-    <strong>Most Downloaded</strong>
+    <strong><%= link_to "Most Downloaded", most_downloaded_path %></strong>
     <ol>
       <% @downloaded.each do |rubygem| %>
         <li>
@@ -64,7 +64,7 @@
     </ol>
   </div>
   <div class="grid_3" id="just_updated">
-    <strong>Just Updated</strong>
+    <strong><%= link_to "Just Updated", just_updated_path %></strong>
     <ol>
       <% @updated.each do |version| %>
         <li>
