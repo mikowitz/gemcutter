@@ -7,7 +7,7 @@ class HomeController < ApplicationController
   end
 
   def new_gems
-    @new_gems = Rubygem.latest.paginate(:limit => Rubygem.total_count, :total_entries => @wov.size, :page => params[:page])
+    @new_gems = Rubygem.latest.paginate(:limit => Rubygem.total_count, :page => params[:page])
   end
 
   def most_downloaded
