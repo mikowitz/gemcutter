@@ -46,6 +46,11 @@ ActionController::Routing::Routes.draw do |map|
   # UI
 
   map.search "/search", :controller => "searches", :action => "new"
+
+  map.new_gems        "/new_gems",        :controller => "home", :action => "new_gems"
+  map.most_downloaded "/most_downloaded", :controller => "home", :action => "most_downloaded"
+  map.just_updated    "/just_updated",    :controller => "home", :action => "just_updated"
+
   map.resource  :dashboard,  :only => :show
   map.resource  :profile
   map.resources :statistics, :only => :index, :as => "stats"
