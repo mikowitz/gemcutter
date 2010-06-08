@@ -82,6 +82,7 @@
 
       <%= render :partial => "rubygems/dependencies", :locals => { :dependencies => @latest_version.dependencies.runtime } %>
       <%= render :partial => "rubygems/dependencies", :locals => { :dependencies => @latest_version.dependencies.development } %>
+      <%= render :partial => "rubygems/reverse_dependencies", :locals => { :dependencies => @latest_version.reverse_dependencies } %>
     </div>
   </div>
 <% end %>

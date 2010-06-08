@@ -114,6 +114,19 @@ class Version < ActiveRecord::Base
     )
   end
 
+  def reverse_dependencies
+    sql = <<-SQL
+SELECT MAX(dependencies.requirements) as requirements, MAX(versions.rubygem_id) as rubygem_id, rubygems.name as rubygem_name
+FROM dependencies, versions, rubygems
+WHERE dependencies.version_id = versions.id
+  AND dependencies.rubygem_id = #{rubygem_id}
+  AND versions.rubygem_id = rubygems.id
+GROUP BY rubygems.name
+ORDER by rubygems.name
+    SQL
+    Dependency.find_by_sql(sql)
+  end
+
   def platform_as_number
     case self.platform
       when 'ruby' then 1

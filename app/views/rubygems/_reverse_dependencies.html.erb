@@ -1,0 +1,12 @@
+<% if dependencies.present? && @latest_version.indexed %>
+  <div class="dependencies" id="reverse_dependencies">
+    <h5>Reverse Dependencies</h5>
+    <ol>
+    <% dependencies.each do |dependency| %>
+      <li>
+        <%= link_to "<strong>#{dependency.rubygem_name}</strong> #{dependency.requirements}", rubygem_url(dependency.rubygem_name) %>
+      </li>
+    <% end %>
+    </ol>
+  </div>
+<% end %>

@@ -1,4 +1,4 @@
-require 'test_helper'
+require File.dirname(__FILE__) + '/../test_helper'
 
 class RubygemsControllerTest < ActionController::TestCase
   context "When logged in" do
@@ -277,12 +277,13 @@ class RubygemsControllerTest < ActionController::TestCase
     end
   end
 
-  context "On GET to show for a gem with both runtime and development dependencies" do
+  context "On GET to show for a gem with both runtime, development and reverse dependencies" do
     setup do
       @version = Factory(:version)
 
       @development = Factory(:development_dependency, :version => @version)
       @runtime     = Factory(:runtime_dependency,     :version => @version)
+      @reverse     = Factory(:dependency, :gem_dependency => Gem::Dependency.new(@version.rubygem.name, "0.0.0"))
 
       get :show, :id => @version.rubygem.to_param
     end
@@ -290,9 +291,10 @@ class RubygemsControllerTest < ActionController::TestCase
     should_respond_with :success
     should_render_template :show
     should_assign_to(:latest_version) { @version }
-    should "show runtime dependencies and development dependencies" do
+    should "show runtime dependencies, development dependencies and reverse dependencies" do
       assert_contain @runtime.rubygem.name
       assert_contain @development.rubygem.name
+      assert_contain @reverse.version.rubygem.name
     end
   end
 
